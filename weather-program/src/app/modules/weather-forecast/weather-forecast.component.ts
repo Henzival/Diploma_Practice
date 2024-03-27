@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { GetWeatherService } from '../../shared/services/get-weather.service';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -7,5 +8,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherForecastComponent {
-
+  constructor(private weather: GetWeatherService) {
+    this.weather.getWeather().subscribe((f: any) => {
+      console.log(f);
+    });
+  }
 }
