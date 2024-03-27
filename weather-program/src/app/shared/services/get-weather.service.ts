@@ -8,12 +8,12 @@ import { Observable } from 'rxjs';
 export class GetWeatherService {
   constructor(public http: HttpClient) { }
   public getWeather(): Observable<any> {
-    const lat = 58.7984;
-    const lng = 17.8081;
-    const params = 'waveHeight,airTemperature';
+    const lat = 55.1904;
+    const lng = 30.2049;
+    const params = 'cloudCover,waveHeight,airTemperature';
     return this.http.get(`https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${params}`, {
       headers: {
-        'Authorization': '0e5b940e-ec2b-11ee-aa40-0242ac130002-0e5b9468-ec2b-11ee-aa40-0242ac130002'
+        'Authorization': ''
       }
     });
   }
