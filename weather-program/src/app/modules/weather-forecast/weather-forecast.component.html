@@ -1,3 +1,84 @@
 <div class="container">
-    <div class="phrase">It works</div>
+  <div class="time-wrapper">
+    <div class="time">{{ time$ | async | date : "shortTime" }}</div>
+    <div class="date">{{ date | date : "fullDate" }}</div>
+  </div>
+  <form [formGroup]="searchForm" class="search-form">
+    <div class="town-search-wrapper">
+      <input class="town-input" type="text" placeholder="{{weather.city}}" formControlName="town" />
+      <app-general-button
+        buttonText="Search"
+        class=""
+        (click)="onSubmit()"
+      ></app-general-button>
+    </div>
+  </form>
+  <app-general-button
+    buttonText="Sign In!"
+    class="sign-in-button"
+    (click)="handleAuthClick()"
+  ></app-general-button>
+  <app-general-button
+    buttonText="Sign Out"
+    class="sign-up-button"
+  ></app-general-button>
+  <div class="weather-calendar-options-wrapper">
+    <span class="calendar"></span>
+    <div class="weather-option-wrapper">
+      <app-general-button
+        buttonText="Daily"
+        class="daily-button"
+        (click)="isWeatherDaily = true"
+      ></app-general-button>
+      <app-general-button
+        buttonText="Hourly"
+        class="hourly-button"
+        (click)="isWeatherDaily = false"
+      ></app-general-button>
+    </div>
+  </div>
+  <div [ngSwitch]="isWeatherDaily">
+    <div class="weekday-wrapper" *ngIf="isWeatherDaily">
+      <span class="weekday" *ngFor="let day of weekDay">
+        {{ day }}
+      </span>
+    </div>
+    <div class="weather-forecast-wrapper" *ngSwitchCase="true">
+      <ng-container
+        class="weather-forecast"
+        *ngFor="let weather of weatherObs$ | async; let i = index"
+        ><div class="info-wrapper" *ngIf="i % 8 === 0">
+          <span
+            class="weather-forecast__item"
+            icon
+            [weatherCondition]="weather.weather[0].main"
+            >{{ weather.weather[0].main }}</span
+          >
+          <span class="temp">{{ (weather.main.temp - 273).toFixed(0) }} °C</span>
+        </div>
+      </ng-container>
+    </div>
+    <div class="weekday-wrapper" *ngIf="isWeatherDaily == false">
+      <span class="weekday" *ngFor="let hour of hours">
+        {{ hour }}
+      </span>
+    </div>
+    <div class="weather-forecast-wrapper" *ngSwitchDefault>
+      <ng-container
+        class="weather-forecast"
+        *ngFor="let weather of weatherObs$ | async; let i = index"
+      >
+        <div class="info-wrapper" *ngIf="i < 5">
+          <span
+            class="weather-forecast__item"
+            icon
+            [weatherCondition]="weather.weather[0].main"
+            >{{ weather.weather[0].main }}</span
+          >
+
+          <span class="temp">{{ (weather.main.temp - 273).toFixed(0) }} °C</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>

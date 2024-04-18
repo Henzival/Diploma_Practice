@@ -1,6 +1,192 @@
+@font-face {
+  font-family: "Monts";
+  src: url('/assets/fonts/Montserrat/Montserrat-Regular.ttf')
+    format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  font-display: auto;
+}
+@mixin monts {
+  font-family: "Monts", sans-serif;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Montsital";
+  src: url("/assets/fonts/Montserrat/Montserrat-LightItalic.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  font-display: auto;
+}
+@mixin montsital {
+  font-family: "Montsital", sans-serif;
+  font-weight: 300;
+}
 .container {
+  background-color: rgba(143, 142, 142, 0.21);
+  backdrop-filter: blur(5px);
+  width: 1047px;
+  height: 574px;
+  font-size: 41px;
+}
+.time-wrapper {
+  padding-top: 50px;
+  padding-left: 79px;
+  margin-bottom: 40px;
+  @include monts();
+}
+.sign-in-button {
+  margin-left: 79px;
+  margin-right: 50px;
+}
+.weather-calendar-options-wrapper {
+  display: flex;
+  margin-bottom: 70px;
+}
+.daily-button {
+  margin-right: 8px;
+  padding-left: 700px;
+}
+.weather-forecast-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.town-search-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+}
+.town-input {
+  height: 40px;
+  width: 300px;
+  font-size: 20px;
+}
+.weekday-wrapper {
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  @include montsital();
+}
+.temp {
+  @include montsital();
+}
+@media (max-width: 850px) {
+  .container {
     background-color: rgba(143, 142, 142, 0.21);
     backdrop-filter: blur(5px);
-    width: 800px;
-    height: 400px;
+    width: 567px;
+    font-size: 24px;
+  }
+  .time-wrapper {
+    display: block;
+  }
+  .town-search-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 300px;
+    right: 140px;
+  }
+  .daily-button {
+    padding-left: 0;
+  }
+  .weather-option-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-left: 135px;
+  }
+  .weekday-wrapper {
+    padding-top: 100px;
+    font-size: 20px;
+  }
+  .sign-in-button {
+    margin-left: 135px;
+    margin-right: 5px;
+  }
+  .weather-calendar-options-wrapper {
+    margin-bottom: 50px;
+    margin-top: 5px;
+  }
+  .town-input {
+    margin-top: -40px;
+    margin-bottom: 5px;
+  }
+  @media (max-width: 567px) {
+    .container {
+      background-color: rgba(143, 142, 142, 0.21);
+      backdrop-filter: blur(5px);
+      width: 367px;
+      font-size: 24px;
+    }
+    .time-wrapper {
+      display: block;
+    }
+    .town-search-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 300px;
+      right: 140px;
+    }
+    .daily-button {
+      padding-left: 0;
+    }
+    .weather-option-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-left: 135px;
+    }
+    .weekday-wrapper {
+      padding-top: 100px;
+    }
+    .sign-in-button {
+      margin: 0;
+      margin-left: 40px;
+      margin-right: 5px;
+    }
+    .weather-option-wrapper {
+      margin: 0;
+      margin-top: 20px;
+      margin-left: 40px;
+    }
+    .town-search-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 305px;
+      right: 40px;
+    }
+    .town-input {
+      width: 288px;
+      margin-bottom: 5px;
+    }
+    .weekday-wrapper {
+      font-size: 12px;
+    }
+    .temp {
+      font-size: 12px;
+    }
+    img {
+      height: 30px;
+      width: 30px;
+    }
+    .weather-forecast__item {
+      height: 30px;
+      width: 30px;
+    }
+    .time-wrapper {
+      padding-left: 38px;
+    }
+  }
 }
