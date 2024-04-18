@@ -1,20 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, Input } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { WeatherList } from '../interfaces/weather-list.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetWeatherService {
   constructor(public http: HttpClient) { }
-  public getWeather(): Observable<any> {
-    const lat = 55.1904;
-    const lng = 30.2049;
-    const params = 'cloudCover,waveHeight,airTemperature';
-    return this.http.get(`https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${params}`, {
-      headers: {
-        'Authorization': ''
-      }
-    });
+  @Input() public city = 'Minsk';
+  public getWeather(): Observable<WeatherList[]> {
+    return this.http.get<WeatherList>(`https://api.openweathermap.org/data/2.5/forecast?q=${this.city}&appid=${environment.apiKey}`).pipe(map((f: any) => f.list));
   }
 }

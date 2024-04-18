@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Montsital";
+  src: url("/assets/fonts/Montserrat/Montserrat-LightItalic.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: normal;
+  font-display: auto;
+}
+@mixin montsital {
+  font-family: "Montsital", sans-serif;
+  font-weight: 300;
+}
+.general-button {
+  @include montsital();
+  cursor: pointer;
+  height: 44px;
+  width: 139px;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 25px;
+  border-style: solid;
+  transition: 0.3s;
+  &:hover {
+    border-color: #fff;
+    background: #fff;
+    color: #000;
+  }
+}
